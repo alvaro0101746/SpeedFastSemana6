@@ -1,25 +1,34 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.List;
+import dao.PedidoDAO;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class ZonaDeCarga {
     private Queue<Pedido> colaPedidos = new LinkedList<>();
-    private List<Pedido> todosLosPedidos = new ArrayList<>();
+    private PedidoDAO pedidoDAO = new PedidoDAO();
+
+    public ZonaDeCarga() {
+        List<Pedido> desdeBD = pedidoDAO.listarTodos();
+        for (Pedido p : desdeBD) {
+            if (p.getEstado() == EstadoPedido.PENDIENTE) {
+                colaPedidos.add(p);
+            }
+        }
+    }
 
     public synchronized void agregarPedido(Pedido p) {
-        colaPedidos.add(p);
-        todosLosPedidos.add(p);
+        if (pedidoDAO.guardar(p)) {
+            colaPedidos.add(p);
+        }
     }
 
     public synchronized Pedido retirarPedido() {
-            return colaPedidos.poll();
-        }
+        return colaPedidos.poll();
+    }
 
     public synchronized List<Pedido> getTodosLosPedidos() {
-        return new ArrayList<>(todosLosPedidos);
+        return pedidoDAO.listarTodos();
     }
 }
-

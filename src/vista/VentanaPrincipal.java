@@ -49,9 +49,9 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void iniciarEntregas() {
-        Thread r1 = new Thread(new Repartidor("Alvaro", zonaDeCarga));
-        Thread r2 = new Thread(new Repartidor("Fabian", zonaDeCarga));
-        Thread r3 = new Thread(new Repartidor("Tomas", zonaDeCarga));
+        Thread r1 = new Thread(new Repartidor(1, "Alvaro", zonaDeCarga));
+        Thread r2 = new Thread(new Repartidor(2, "Fabian", zonaDeCarga));
+        Thread r3 = new Thread(new Repartidor(3, "Tomas", zonaDeCarga));
 
         r1.start();
         r2.start();

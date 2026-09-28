@@ -12,6 +12,7 @@ public class Pedido {
         this.tipoPedido = tipoPedido;
         this.estado = estado;
     }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getDireccionEntrega() { return direccionEntrega; }
@@ -23,5 +24,6 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido #" + id + "["  + tipoPedido +  "]  [Destino: " + direccionEntrega + " | Estado: " + estado + "]"; }
+        return "Pedido #" + id + "["  + tipoPedido +  "]  [Destino: " + direccionEntrega + " | Estado: " + estado + "]";
+    }
 }
